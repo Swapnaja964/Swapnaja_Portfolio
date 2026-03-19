@@ -21,9 +21,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("min-h-full font-sans antialiased dark", figtree.variable)}
+      className={cn(
+        "min-h-[100svh] font-sans antialiased dark",
+        figtree.variable
+      )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-[100svh] flex flex-col">
         <Navbar />
         <div className="flex-1">
           <PageTransition>{children}</PageTransition>
