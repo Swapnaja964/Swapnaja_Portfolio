@@ -156,10 +156,15 @@
         oklch(var(--neon-blue) / 0.12),
         transparent 56%
       );
-    background-attachment: fixed;
   }
   html {
     @apply font-sans;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    background-attachment: fixed;
   }
 }
 

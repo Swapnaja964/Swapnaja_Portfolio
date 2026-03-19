@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/app/components/navbar";
 import { Footer } from "@/app/components/footer";
+import { PageTransition } from "@/app/components/page-transition";
 
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,7 +25,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <div className="flex-1">{children}</div>
+        <div className="flex-1">
+          <PageTransition>{children}</PageTransition>
+        </div>
         <Footer />
       </body>
     </html>
