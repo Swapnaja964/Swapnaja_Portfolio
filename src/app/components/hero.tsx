@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -18,6 +18,14 @@ const HERO_PARTICLES = [
 ] as const
 
 export function Hero() {
+  const reduceMotion = useReducedMotion()
+  const glowFloatA = reduceMotion
+    ? undefined
+    : { y: [0, -10, 0], x: [0, 8, 0] }
+  const glowFloatB = reduceMotion
+    ? undefined
+    : { y: [0, 12, 0], x: [0, -10, 0] }
+
   return (
     <section
       className={cn(
@@ -26,8 +34,36 @@ export function Hero() {
     >
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.18]" />
       <div className="absolute inset-0 -z-10">
-        <div className="absolute -top-24 left-1/2 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full blur-3xl" style={{ backgroundImage: "radial-gradient( circle, oklch(var(--neon-cyan)/0.18) 0%, transparent 60% )" }} />
-        <div className="absolute bottom-[-10rem] left-1/4 h-[40rem] w-[40rem] rounded-full blur-[90px]" style={{ backgroundImage: "radial-gradient( circle, oklch(var(--neon-purple)/0.16) 0%, transparent 62% )" }} />
+        <motion.div
+          animate={glowFloatA}
+          transition={{
+            duration: 7.5,
+            ease: "easeInOut",
+            repeat: reduceMotion ? 0 : Infinity,
+            repeatType: "mirror",
+          }}
+          className="absolute -top-24 left-1/2 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full blur-3xl"
+          style={{
+            backgroundImage:
+              "radial-gradient( circle, oklch(var(--neon-cyan)/0.18) 0%, transparent 60% )",
+            willChange: "transform",
+          }}
+        />
+        <motion.div
+          animate={glowFloatB}
+          transition={{
+            duration: 8.5,
+            ease: "easeInOut",
+            repeat: reduceMotion ? 0 : Infinity,
+            repeatType: "mirror",
+          }}
+          className="absolute bottom-[-10rem] left-1/4 h-[40rem] w-[40rem] rounded-full blur-[90px]"
+          style={{
+            backgroundImage:
+              "radial-gradient( circle, oklch(var(--neon-purple)/0.16) 0%, transparent 62% )",
+            willChange: "transform",
+          }}
+        />
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         {HERO_PARTICLES.map((pos, i) => (

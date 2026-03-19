@@ -49,30 +49,45 @@ export function Navbar() {
         </motion.div>
 
         <nav className="hidden items-center gap-2 sm:flex">
-          {navLinks.map((link) => {
+          {navLinks.map((link, i) => {
             const active = pathname === link.href
             return (
-              <Button
+              <motion.div
                 key={link.href}
-                variant="ghost"
-                size="lg"
-                asChild
-                className={cn(
-                  "relative text-base text-muted-foreground hover:text-foreground",
-                  active && "text-foreground"
-                )}
+                initial={reduceMotion ? false : { opacity: 0, y: -6 }}
+                animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                transition={
+                  reduceMotion
+                    ? undefined
+                    : { duration: 0.25, ease: "easeOut", delay: 0.03 * i }
+                }
+                style={{ willChange: "transform, opacity" }}
               >
-                <Link href={link.href}>
-                  {link.label}
-                  {active ? (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute inset-x-3 -bottom-1 h-px bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-blue"
-                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                    />
-                  ) : null}
-                </Link>
-              </Button>
+                <Button
+                  variant="ghost"
+                  size="lg"
+                  asChild
+                  className={cn(
+                    "relative text-base text-muted-foreground hover:text-foreground",
+                    active && "text-foreground"
+                  )}
+                >
+                  <Link href={link.href}>
+                    {link.label}
+                    {active ? (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute inset-x-3 -bottom-1 h-px bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-blue"
+                        transition={{
+                          type: "spring",
+                          stiffness: 420,
+                          damping: 34,
+                        }}
+                      />
+                    ) : null}
+                  </Link>
+                </Button>
+              </motion.div>
             )
           })}
         </nav>

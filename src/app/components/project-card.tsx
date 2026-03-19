@@ -27,10 +27,14 @@ export function ProjectCard({ project, index = 0 }: Props) {
       whileTap={{ scale: 1.01 }}
       style={{ willChange: "transform, opacity" }}
       className={cn(
-        "glass relative flex h-full flex-col justify-between rounded-3xl border bg-surface-2/40 p-6",
+        "glass group relative flex h-full flex-col justify-between rounded-3xl border bg-surface-2/40 p-6",
         accent
       )}
     >
+      <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-cyan/10 via-transparent to-neon-purple/10" />
+        <div className="absolute inset-0 translate-y-2 rounded-3xl bg-gradient-to-t from-white/[0.06] via-transparent to-transparent transition-transform duration-200 group-hover:translate-y-0" />
+      </div>
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between gap-2">
           <h3 className="text-lg font-semibold tracking-tight">{project.title}</h3>

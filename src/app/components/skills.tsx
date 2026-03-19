@@ -80,10 +80,14 @@ function SkillCard({
       whileHover={{ scale: 1.03 }}
       style={{ willChange: "transform, opacity" }}
       className={cn(
-        "glass flex items-center gap-3 rounded-2xl border bg-surface-2/40 p-4",
+        "glass group relative flex items-center gap-3 overflow-hidden rounded-2xl border bg-surface-2/40 p-4",
         glow
       )}
     >
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/10 via-transparent to-neon-purple/10" />
+        <div className="absolute inset-0 translate-y-2 bg-gradient-to-t from-white/[0.05] via-transparent to-transparent transition-transform duration-200 group-hover:translate-y-0" />
+      </div>
       <div className="grid size-9 place-items-center rounded-xl border border-white/10 bg-white/5">
         {item.icon}
       </div>
