@@ -30,7 +30,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-background/50 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6">
+      <div className="mx-auto flex h-[72px] w-full max-w-5xl items-center justify-between px-6">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: -6 }}
           animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
@@ -39,25 +39,26 @@ export function Navbar() {
         >
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/40"
+            className="group inline-flex items-center gap-2 text-lg font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/40 sm:text-xl"
           >
             <span className="bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-blue bg-clip-text text-transparent">
               {siteConfig.name}
             </span>
-            <span className="h-1.5 w-1.5 rounded-full bg-neon-cyan/70 shadow-glow-cyan transition-opacity group-hover:opacity-100 sm:opacity-60" />
+            <span className="h-2 w-2 rounded-full bg-neon-cyan/70 shadow-glow-cyan transition-opacity group-hover:opacity-100 sm:opacity-60" />
           </Link>
         </motion.div>
 
-        <nav className="hidden items-center gap-1 sm:flex">
+        <nav className="hidden items-center gap-2 sm:flex">
           {navLinks.map((link) => {
             const active = pathname === link.href
             return (
               <Button
                 key={link.href}
                 variant="ghost"
+                size="lg"
                 asChild
                 className={cn(
-                  "relative text-muted-foreground hover:text-foreground",
+                  "relative text-base text-muted-foreground hover:text-foreground",
                   active && "text-foreground"
                 )}
               >
@@ -79,7 +80,7 @@ export function Navbar() {
         <div className="sm:hidden">
           <Button
             variant="ghost"
-            size="icon"
+            size="icon-lg"
             className="border border-white/10 bg-white/5 hover:bg-white/10"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -87,7 +88,7 @@ export function Navbar() {
             onClick={() => setMobileOpen((v) => !v)}
             type="button"
           >
-            {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </Button>
         </div>
       </div>
@@ -131,7 +132,7 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       className={cn(
-                        "glass-strong flex items-center justify-between rounded-2xl px-4 py-3 text-sm transition-colors",
+                        "glass-strong flex items-center justify-between rounded-2xl px-4 py-4 text-base transition-colors",
                         active
                           ? "border-neon-cyan/30 text-foreground glow-cyan"
                           : "border-white/10 text-muted-foreground hover:text-foreground",
