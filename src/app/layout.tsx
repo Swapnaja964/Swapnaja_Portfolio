@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("min-h-full font-sans antialiased", figtree.variable)}
+      className={cn("min-h-full font-sans antialiased dark", figtree.variable)}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
