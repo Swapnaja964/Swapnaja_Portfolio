@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { siteConfig } from "@/lib/constants"
 
 export default function ContactPage() {
   return (
@@ -10,7 +9,7 @@ export default function ContactPage() {
       </p>
       <div className="mt-8">
         <Button asChild>
-          <a href={`mailto:${siteConfig.email}`}>Email me</a>
+          <a href={`mailto:swapnajamagarde2004@gmail.com`}>Email me</a>
         </Button>
       </div>
     </main>
